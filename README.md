@@ -16,6 +16,8 @@ https://console.cloud.google.com/storage/browser/bgse-datawarehousing-random-twe
 
 You will see that it consists of a bunch of files named with a timestamp. Each of these files is a line-delimited json file (also known as json lines format), each JSON represents a tweet object from the Twitter API. You can read more about the format on [the Twitter site](https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/intro-to-tweet-json).
 
+Google has written a "connector" that allows Spark to read directly from Google Cloud Storage buckets as though they were hdfs file paths. You can read about the connector here: https://cloud.google.com/dataproc/docs/concepts/connectors/cloud-storage.
+
 We want to analyze hashtags by looking at their cooccurence with other hashtgs. The final object we will want is:
 
 * A scipy sparse matrix, dimensions NxN, where N is the number of hashtags analyzed. The values of the matrix should be the number of times that hashtags i,j coccur in the same tweet (thus it will be a symmetric matrix).
@@ -40,13 +42,13 @@ I recommend the following setup:
 ``` shell
 gcloud beta dataproc clusters create dw-cluster \
 --optional-components=ANACONDA,JUPYTER \
---image-version=1.3 \
+--image-version=1.4 \
 --enable-component-gateway \
 --bucket [THE BUCKET YOU CREATED FOR NOTEBOOK FILES] \
 --project [YOUR PROJECT] \
 --zone europe-west1-b \
 --worker-machine-type n1-standard-4 \
---num-workers=2
+--num-workers=2 \
 --num-preemptible-workers=2
 ```
 
