@@ -48,8 +48,9 @@ We want to analyze hashtags by looking at their cooccurence with other hashtgs. 
 
 And you will then use those objects to answer the following question:
 
-* How many times do #NewGreenDeal and #Brexit co-occur?
-* How many times do #Memes and #Merkel co-occur?
+1. How many times do #NewGreenDeal and #Brexit co-occur?
+2. How many times do #Memes and #Merkel co-occur?
+3. How many distinct hashtags are in your set of pairs that co-occur at least 3 times?
 
 To do that, the first step will be to get out the hashtags from the tweet object. I recommend reading the data and using `.printSchema` to take a look at the JSON schema in Spark. We can ignore the "extended tweets" and instead just look at the basic tweet object, where the hashtags live under `entities.hashtags`.
 
